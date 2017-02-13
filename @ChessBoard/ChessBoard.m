@@ -34,9 +34,10 @@ classdef ChessBoard < handle
         
         function [occupied, piece] = checkPosition(board, position)
             % Your code here
-            for piece = board.ActiveList
-                if isequal(position, piece.Position)
+            for pieceCell = board.ActiveList
+                if isequal(position, pieceCell{1}.Position)
                    occupied = true; 
+                   piece = pieceCell{1};
                    return              
                 end  
             end
