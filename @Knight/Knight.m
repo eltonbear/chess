@@ -8,7 +8,7 @@ classdef Knight < ChessPiece
         end 
         
         function symbol = getSymbol(piece)
-            symbol = 'K';
+            symbol = 'N';
         end
     end
     

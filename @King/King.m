@@ -5,7 +5,7 @@ classdef King < ChessPiece
         end  
         
         function symbol = getSymbol(piece)
-            symbol = 'N';
+            symbol = 'K';
         end
     end
 end
