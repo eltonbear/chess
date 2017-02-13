@@ -3,14 +3,14 @@ classdef (Abstract) ChessPiece < handle
     %   Detailed explanation goes here
     
     properties
-        position
-        team
+        Position
+        Team
     end
     
     methods
         function piece = ChessPiece(location, board, team)
-            piece.position = location;
-            piece.team = team;
+            piece.Position = location;
+            piece.Team = team;
             board.addPiece(piece)
         end        
     end
