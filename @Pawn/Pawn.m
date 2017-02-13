@@ -3,6 +3,10 @@ classdef Pawn < ChessPiece
     %   Detailed explanation goes here
     
     methods
+        function pawnPiece = Pawn(location, board, team)
+            pawnPiece = pawnPiece@ChessPiece(location, board, team);
+        end  
+        
         function symbol = getSymbol(piece)
             symbol = 'P';
         end

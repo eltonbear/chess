@@ -3,6 +3,10 @@ classdef Queen < ChessPiece
     %   Detailed explanation goes here
 
     methods
+        function queenPiece = Queen(location, board, team)
+            queenPiece = queenPiece@ChessPiece(location, board, team);
+        end 
+        
         function symbol = getSymbol(piece)
             symbol = 'Q';
         end

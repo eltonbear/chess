@@ -3,6 +3,10 @@ classdef Knight < ChessPiece
     %   Detailed explanation goes here
 
     methods
+        function knightPiece = Knight(location, board, team)
+            knightPiece = knightPiece@ChessPiece(location, board, team);
+        end 
+        
         function symbol = getSymbol(piece)
             symbol = 'K';
         end
