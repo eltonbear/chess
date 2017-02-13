@@ -3,6 +3,7 @@ classdef ChessBoard < handle
     %   Describe here in your own words how this class works.
     
     properties
+        ActiveList = {}
     end
     
     methods
