@@ -3,20 +3,45 @@ classdef ChessBoard < handle
     %   Describe here in your own words how this class works.
     
     properties
-        ActiveList = {}
+        ActiveList
     end
     
     methods
-        function addPiece(board,piece)
-            % Your code here
+        function board = ChessBoard()
+            board.ActiveList = {};
         end
         
-        function removePiece(board,piece)
+        function addPiece(board, piece)
             % Your code here
+            result = checkPosition(board, piece.Position);
+            if result(1) == false
+                board.ActiveList{end + 1} = piece;
+            else
+                error('Location already occupied')
+            end
         end
         
-        function [occupied, piece] = checkPosition(board,position)
+        function removePiece(board, piece)
             % Your code here
+            for i = 1:length( board.ActiveList)
+                if board.ActiveList{i} == piece
+                    board.ActiveList(i) = [];
+                    return
+                end             
+            end
+            error('Piece not on the board')
+        end
+        
+        function [occupied, piece] = checkPosition(board, position)
+            % Your code here
+            for piece = board.ActiveList
+                if isequal(position, piece.Position)
+                   occupied = true; 
+                   return              
+                end  
+            end
+            occupied = false;
+            piece = [];
         end
         
     end
