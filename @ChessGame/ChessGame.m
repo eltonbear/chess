@@ -4,6 +4,12 @@ classdef ChessGame < handle
     %   or use the static method REPLAY() to replay a previous game.
     %   See the help for each method (e.g., "help ChessGame.play")
     %   for details.
+    %   Updated Febuary 13, 2015 by Daniel Driver
+    %   Fixed Bug in play method so games ends at checkmate
+    %   Added output of game to replay and put more data in
+    %   game object so can resume game
+	%   Update Febuary 20, 2015 by Daniel Driver
+    %   Bug with Direction be added for invalid move fixed
     
     properties (Access = private, Hidden = true)
         Board
@@ -52,7 +58,7 @@ classdef ChessGame < handle
             end
             bd = game.Board;
             display(bd);
-            while game.Playing ~= 0
+            while game.Playing ~= 0 
                 team = game.Playing;
                 disp('');
                 disp(['Team ' num2str(team) '''s turn']);
@@ -117,10 +123,18 @@ classdef ChessGame < handle
                     directions = game.Directions;
                     return;
                 end
-                game.Directions(end+1,:) = [selected.Position move];
+                
+                PreviousPosition=selected.Position;
                 selected.move(move);
+                game.Directions(end+1,:) = [PreviousPosition move];
+                
                 display(game.Board);
-                game.Playing = mod(game.Playing,length(game.KingList))+1;
+                %Added logic so if checkmate called via a move the kills a 
+                %King changes Game.Playine to 0 it is not undone and the
+                %game can end
+                if game.Playing~=0
+                    game.Playing = mod(game.Playing,length(game.KingList))+1;
+                end
             end
             directions = game.Directions;
         end
@@ -191,7 +205,7 @@ classdef ChessGame < handle
     end
     
     methods (Static)
-        function replay(directions)
+        function game=replay(directions)
             %REPLAY(DIRECTIONS) Replays a saved chess game.
             %   This is a static method, so it is called using 
             %   ChessGame.replay(directions).  You don't need to create an
@@ -199,12 +213,26 @@ classdef ChessGame < handle
             %   column array of from-position to-position moves.  They must
             %   be valid, or you will get errors.  You can use the output
             %   of the PLAY() method, or either of the arrays in games.mat.
+            
+            %do a little check of 
+            if (isnumeric(directions)) && (size(directions,2)==4) && (length(size(directions))==2)
+            else
+                error('For one input should be an Nx4 double or int array Array')
+            end
+            
+            %Set Game properties
             game = ChessGame();
             game.Board = ChessBoard();
             game.initializeBoard();
+            %calculated who the next player should be and set
+            game.Playing=mod(size(directions,1),length(game.KingList))+1;
+            %put directions in game property
+            game.Directions=directions; 
             bd = game.Board;
             display(bd);
             pause(.5);
+            
+            %Move Pieces according to directions
             for i = 1:size(directions,1)
                 move = directions(i,:);
                 [~, pc] = bd.checkPosition(move(1:2));
