@@ -5,6 +5,7 @@ classdef (Abstract) ChessPiece < handle
     properties
         Position
         Team
+        Board
     end
     
     methods
@@ -12,12 +13,32 @@ classdef (Abstract) ChessPiece < handle
             piece.Position = location;
             piece.Team = team;
             board.addPiece(piece)
-        end        
+        end    
+        
+        function die(piece)
+            piece.Board.removePiece(piece)
+        end
+        
+        function move(piece, position)
+            moves = piece.getMoves();
+            for i = 1:size(moves, 1)
+                if position(1) == moves(i,1) && position(2) == moves(i, 2)
+                    if moves(i,3) == 1
+                        [~, pieceToBeAttack] = piece.Board.checkPosition(position);
+                        pieceToBeAttack.die()
+                    end
+                    piece.position = position;
+                    break;
+                end
+            end
+            error('not a valid move')
+        end
     end
     
     methods(Abstract)
         symbol = getSymbol(piece)
+        moves = getMoveArray(piece)
     end
-    
+
 end
 
