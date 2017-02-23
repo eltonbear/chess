@@ -12,6 +12,7 @@ classdef (Abstract) ChessPiece < handle
         function piece = ChessPiece(location, board, team)
             piece.Position = location;
             piece.Team = team;
+            piece.Board = board;
             board.addPiece(piece)
         end    
         
@@ -37,7 +38,7 @@ classdef (Abstract) ChessPiece < handle
     
     methods(Abstract)
         symbol = getSymbol(piece)
-        moves = getMoveArray(piece)
+        directionsAndMoves = getMoveArray(piece)
     end
 
 end
