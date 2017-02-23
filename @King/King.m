@@ -13,5 +13,11 @@ classdef King < ChessPiece
         function symbol = getSymbol(piece)
             symbol = 'K';
         end
+        
+        function die(piece)
+            piece.die@ChessPiece();
+            piece.Game.checkmate(piece);
+        end
+        
     end
 end
