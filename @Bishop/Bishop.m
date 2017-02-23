@@ -11,7 +11,6 @@ classdef Bishop < ChessPiece
             symbol = 'B';
         end
         
-        
         function directions = getMoveArray(piece)
             directions = ChessPiece.searchAllDiagonal(piece.Position);
         end
