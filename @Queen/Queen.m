@@ -10,6 +10,13 @@ classdef Queen < ChessPiece
         function symbol = getSymbol(piece)
             symbol = 'Q';
         end
+        
+        function directions = getMoveArray(piece)
+            straights = ChessPiece.searchAllVerHor(piece.Position);
+            diagonals = ChessPiece.searchAllDiagonal(piece.Position);
+            directions = [straights diagonals];            
+        end
+        
     end
     
 end
