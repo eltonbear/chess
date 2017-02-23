@@ -1,7 +1,13 @@
 classdef King < ChessPiece
+    properties
+        Game
+    end
+
     methods
         function kingPiece = King(location, board, team, chessGame)
             kingPiece = kingPiece@ChessPiece(location, board, team);
+            kingPiece.Game = chessGame;
+            kingPiece.Game.addKing(kingPiece);
         end  
         
         function symbol = getSymbol(piece)
