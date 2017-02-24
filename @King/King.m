@@ -20,7 +20,18 @@ classdef King < ChessPiece
         end
         
         function directions = getMoveArray(piece)
-        end
-        
+            y = piece.Position(2);
+            x = piece.Position(1);
+            directions = {};
+            for row = y-1:y+1
+                if row > 0 && row < 9
+                    for col = x-1:x+1
+                        if col > 0 && col < 9 && ~(col == x && row == y)
+                            directions = [directions [col row]];
+                        end
+                    end
+                end
+            end
+        end    
     end
 end
