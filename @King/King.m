@@ -19,5 +19,8 @@ classdef King < ChessPiece
             piece.Game.checkmate(piece);
         end
         
+        function directions = getMoveArray(piece)
+        end
+        
     end
 end
