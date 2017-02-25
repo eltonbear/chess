@@ -28,7 +28,7 @@ classdef (Abstract) ChessPiece < handle
                         [~, pieceToBeAttack] = piece.Board.checkPosition(position);
                         pieceToBeAttack.die()
                     end
-                    piece.position = position;
+                    piece.Position = position;
                     break;
                 end
             end
