@@ -1,25 +1,25 @@
 function directions = searchAllVerHor(currPosition)
-    row = currPosition(1);
-    col = currPosition(2);
+    x = currPosition(1);
+    y = currPosition(2);
     directions = {};
-    if row < 8
-        numUp = 8 - row;
-        moves = {[(row + 1):8; col*ones(1, numUp)]'};
+    if x < 8
+        numUp = 8 - x;
+        moves = {[(x + 1):8; y*ones(1, numUp)]'};
         directions = [directions moves];
     end
-    if row > 1
-        numDown = row - 1;
-        moves = {[(row - 1):-1:1; col*ones(1, numDown)]'};
+    if x > 1
+        numDown = x - 1;
+        moves = {[(x - 1):-1:1; y*ones(1, numDown)]'};
         directions = [directions moves];
     end
-    if col < 8
-        numUp = 8 - col;
-        moves = {[row*ones(1, numUp); (col + 1):8 ]'};
+    if y < 8
+        numUp = 8 - y;
+        moves = {[x*ones(1, numUp); (y + 1):8 ]'};
         directions = [directions moves];
     end
-    if col > 1
-        numDown = col - 1;
-        moves = {[row*ones(1, numDown); (col - 1):-1:1]'};
+    if y > 1
+        numDown = y - 1;
+        moves = {[x*ones(1, numDown); (y - 1):-1:1]'};
         directions = [directions moves];
     end
 

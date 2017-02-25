@@ -32,7 +32,6 @@ classdef (Abstract) ChessPiece < handle
                     break;
                 end
             end
-            error('not a valid move')
         end
     end
     
