@@ -7,16 +7,18 @@ classdef Queen < ChessPiece
             queenPiece = queenPiece@ChessPiece(location, board, team);
         end 
         
-        function symbol = getSymbol(piece)
-            symbol = 'Q';
-        end
-        
         function directions = getMoveArray(piece)
             straights = ChessPiece.searchAllVerHor(piece.Position);
             diagonals = ChessPiece.searchAllDiagonal(piece.Position);
             directions = [straights diagonals];            
         end
         
+    end
+    
+    methods (Static)
+        function symbol = getSymbol()
+            symbol = 'Q';
+        end
     end
     
 end

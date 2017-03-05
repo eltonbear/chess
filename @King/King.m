@@ -10,10 +10,6 @@ classdef King < ChessPiece
             kingPiece.Game.addKing(kingPiece);
         end  
         
-        function symbol = getSymbol(piece)
-            symbol = 'K';
-        end
-        
         function die(piece)
             piece.die@ChessPiece();
             piece.Game.checkmate(piece);
@@ -33,5 +29,11 @@ classdef King < ChessPiece
                 end
             end
         end    
+    end
+    
+    methods (Static)
+        function symbol = getSymbol()
+            symbol = 'K';
+        end
     end
 end

@@ -7,13 +7,15 @@ classdef Rook < ChessPiece
             rookPiece = rookPiece@ChessPiece(location, board, team);
         end 
         
-        function symbol = getSymbol(piece)
-            symbol = 'R';            
-        end 
-        
         function directions = getMoveArray(piece)
             directions = ChessPiece.searchAllVerHor(piece.Position);
         end
+    end
+    
+    methods (Static)
+        function symbol = getSymbol()
+            symbol = 'R';            
+        end 
     end
 end
 

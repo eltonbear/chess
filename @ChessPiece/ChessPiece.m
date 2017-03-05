@@ -36,11 +36,12 @@ classdef (Abstract) ChessPiece < handle
     end
     
     methods(Abstract)
-        symbol = getSymbol(piece)
         directionsAndMoves = getMoveArray(piece)
     end
     
+    
     methods(Static)
+        symbol = getSymbol()
         diaDirections = searchAllDiagonal(currPosition)
         VerHorDir = searchAllVerHor(currPosition)
     end

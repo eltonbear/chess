@@ -13,12 +13,14 @@ classdef Pawn < ChessPiece
             pawnPiece.initializeProperties(team)
         end  
         
-        function symbol = getSymbol(piece)
-            symbol = 'P';
-        end
-        
         function directions = getMoveArray(piece)
             directions = [];
+        end
+    end
+    
+    methods (Static)      
+        function symbol = getSymbol()
+            symbol = 'P';
         end
     end
     

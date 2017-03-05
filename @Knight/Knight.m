@@ -7,10 +7,6 @@ classdef Knight < ChessPiece
             knightPiece = knightPiece@ChessPiece(location, board, team);
         end 
         
-        function symbol = getSymbol(piece)
-            symbol = 'N';
-        end
-        
         function directions = getMoveArray(piece)
             y = piece.Position(2);
             x = piece.Position(1);
@@ -35,7 +31,12 @@ classdef Knight < ChessPiece
                 end
             end
         end
-        
+    end
+    
+    methods (Static)
+        function symbol = getSymbol()
+            symbol = 'N';
+        end
     end
     
 end
