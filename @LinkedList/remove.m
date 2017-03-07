@@ -1,5 +1,5 @@
 function NodeData = remove(list,index)
-    if index < 1 || index > list.Size + 1
+    if index < 1 || index > list.Size
         error('Index invalid')
     end
     
