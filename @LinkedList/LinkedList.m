@@ -1,10 +1,10 @@
 classdef LinkedList < handle
-    properties
+    properties (GetAccess = public, SetAccess = private)
         Size = 0
         CellArray = {}
     end
     
-    properties (SetAccess = private)
+    properties (GetAccess = private, SetAccess = private)
         firstNode
         lastNode
     end
