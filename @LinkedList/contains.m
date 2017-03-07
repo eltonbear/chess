@@ -1,3 +1,8 @@
-function out = contains(list,NodeData)
-    out = ~isempty(find(cell2mat(list.CellArray) == NodeData, 1));
+function out = contains(list, nodeData)
+    index = list.indexOf(nodeData);
+    if index == -1
+        out = false;
+    else
+        out = true;
+    end
 end
