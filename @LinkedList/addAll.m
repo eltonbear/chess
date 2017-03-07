@@ -4,5 +4,4 @@ function addAll(list,otherList)
         list.add(targetNode.Data)
         targetNode = targetNode.Next;
     end
-    
 end
