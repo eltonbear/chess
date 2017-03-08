@@ -1,9 +1,9 @@
 classdef ChessBoard < handle
     %CHESSBOARD Represents the state of a game of chess
     %   Describe here in your own words how this class works.
-    
+
     properties (Access = private)
-        ActiveList
+        ActiveList 
     end
     
     methods
@@ -27,7 +27,7 @@ classdef ChessBoard < handle
             if index == -1
                 error('Piece not on the board')
             else
-                board.ActiveList.remove(index)
+                board.ActiveList.remove(index);
             end
         end
         
