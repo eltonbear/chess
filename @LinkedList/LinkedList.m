@@ -8,8 +8,5 @@ classdef LinkedList < handle
         firstNode
         lastNode
     end
-    
-    methods
-        
-    end
+
 end
