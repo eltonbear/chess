@@ -15,6 +15,7 @@ classdef ChessGame < handle
         Board
         KingList = {}
         Playing = []
+        Figure
     end
     
     properties
@@ -24,7 +25,7 @@ classdef ChessGame < handle
     methods
         function game = ChessGame()
             game.Board = ChessBoard();
-            game.initializeBoard();
+            %game.initializeBoard();
         end
         
         function directions = play(game)
