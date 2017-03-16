@@ -9,6 +9,7 @@ function playui(game)
         game.Directions = [];
         game.Board = ChessBoard();
         game.Playing = 1;
+        game.KingList = {};
         board = game.Board;
         
         team1HasKing = false;
