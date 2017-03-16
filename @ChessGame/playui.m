@@ -60,7 +60,8 @@ function playui(game)
         buttonH = 25;
         submitButton = uicontrol('Parent', buttonPanel, 'Style', 'pushbutton',...
                                  'String', 'Submit',...
-                                 'Position', [fWidth/4-buttonW/2 70 buttonW buttonH]);
+                                 'Position', [fWidth/4-buttonW/2 70 buttonW buttonH],...
+                                 'Callback', @submit_callback);
 
         playButton = uicontrol('Parent', buttonPanel, 'Style', 'pushbutton',...
                                 'String', 'Play',...
@@ -87,11 +88,16 @@ function playui(game)
         pcs = get(pieceMenu,'String');
         
         position = str2num(get(positionEdit,'String')); %1x2 double array
-        piece = pcs{get(pieceMenu,'Value')}; %string of piece name
+        pieceString = pcs{get(pieceMenu,'Value')}; %string of piece name
         
-        % put in code here to create the appropriate piece
-        
-        % put in code here to update the display of the board
+        if strcmp(pieceString, 'King')
+            piece = King(position, board, team, game);
+        else
+            pieceConstructor = str2func(pieceString);
+            piece = pieceConstructor(position, board, team);
+        end
+                
+        board.display(boardAxes)
     end
 
 end
