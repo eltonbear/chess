@@ -10,7 +10,10 @@ function playui(game)
         game.Board = ChessBoard();
         game.Playing = 1;
         board = game.Board;
-
+        
+        team1HasKing = false;
+        team2HasKing = false;
+        noPiece = true;
 
         % initialize ui
         if isempty(game.Figure)
@@ -65,7 +68,8 @@ function playui(game)
 
         playButton = uicontrol('Parent', buttonPanel, 'Style', 'pushbutton',...
                                 'String', 'Play',...
-                                'Position', [fWidth/4-buttonW/2 30 buttonW buttonH]);
+                                'Position', [fWidth/4-buttonW/2 30 buttonW buttonH],...
+                                'Callback', @play_callback);
 
         board.display(boardAxes)
     else
@@ -91,13 +95,32 @@ function playui(game)
         pieceString = pcs{get(pieceMenu,'Value')}; %string of piece name
         
         if strcmp(pieceString, 'King')
-            piece = King(position, board, team, game);
+            King(position, board, team, game);
+            if team == 1
+                team1HasKing = true;
+            else
+                team2HasKing = true;
+            end
         else
             pieceConstructor = str2func(pieceString);
-            piece = pieceConstructor(position, board, team);
+            pieceConstructor(position, board, team);
         end
                 
         board.display(boardAxes)
+        noPiece = false;
     end
 
+    function play_callback(hObject,eventdata)
+        if noPiece
+            game.initializeBoard();
+        elseif ~team1HasKing
+            error('Team 1 does not have a king')
+        elseif ~team2HasKing
+            error('Team 2 does not have a king')
+        end
+        np = uipanel(game.Figure);
+        newAxes = axes('Parent',np,'Position',[0.1 0.1 0.8 0.8]);
+        board.display(newAxes)
+        game.play();  
+    end
 end
